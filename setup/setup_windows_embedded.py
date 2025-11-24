@@ -4,7 +4,7 @@ import filecmp
 import logging
 import shutil
 import sysconfig
-import setup_common
+from . import setup_common
 import argparse
 
 errors = 0  # Define the 'errors' variable before using it
