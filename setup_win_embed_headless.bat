@@ -15,6 +15,10 @@ python -c "import sys,runpy; sys.path.insert(0, r'%CD%'); runpy.run_path('diag_s
 
 ECHO running setup ...
 python -c "import sys,os,runpy; sys.path.insert(0, r'%CD%'); runpy.run_module('setup.setup_windows_embedded', run_name='main')"
-ECHO done.
+IF %ERRORLEVEL% == 0 GOTO SUCCESS
+ECHO [91mFAILED.[0m
+EXIT /B 1
 
+:SUCCESS
+ECHO done.
 

@@ -7,6 +7,7 @@ import sysconfig
 from . import setup_common
 import argparse
 
+
 errors = 0  # Define the 'errors' variable before using it
 log = logging.getLogger("sd")
 
@@ -110,6 +111,7 @@ def sync_bits_and_bytes_files():
 
 
 def install_kohya_ss_torch2(headless: bool = False):
+    print("1", flush=True)
     setup_common.check_repo_version()
     if not setup_common.check_python_version():
         exit(1)
@@ -132,6 +134,8 @@ def install_kohya_ss_torch2(headless: bool = False):
     # )
 
     setup_common.run_cmd("accelerate config default")
+    
+    print("done", flush=True)
 
 
 def install_bitsandbytes_0_35_0():
@@ -257,8 +261,7 @@ def main_menu(headless: bool = False):
             else:
                 print("Invalid selection. Please choose an option between 1-7.")
 
-
-if __name__ == "__main__":
+if __name__ == "__main__" or __name__ == "main":
     setup_common.ensure_base_requirements()
     setup_common.setup_logging()
 
@@ -269,4 +272,4 @@ if __name__ == "__main__":
     # Parse arguments
     args = parser.parse_args()
 
-    main_menu(headless=args.headless)
+    main_menu(headless=True)
