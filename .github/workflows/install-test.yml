@@ -1,0 +1,38 @@
+name: Install Test
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+
+concurrency:
+  group: install-test-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  install-test-windows:
+    name: Smoke test (Windows)
+    runs-on: windows-latest
+    timeout-minutes: 10   # ← beendet den Job nach 20 Minuten
+    
+    env:
+      INSTALL_DIR: C:\Users\runneradmin\AppData\Local
+      
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Verify Git Installation
+        shell: cmd
+        run: |
+          git --version
+
+  
+      - name: Run Installation Script
+        shell: cmd
+        run: |
+          echo Starting installation script with target: %INSTALL_DIR%
+          call setup_win_embed_headless.bat
+
