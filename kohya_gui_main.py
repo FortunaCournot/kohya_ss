@@ -132,7 +132,7 @@ def initialize_arg_parser():
     parser.add_argument("--noverify", action="store_true", help="Disable requirements verification")
     return parser
 
-if __name__ == "__main__":
+if __name__ == "__main__" or __name__ == "main":
     # Initialize argument parser and parse arguments
     parser = initialize_arg_parser()
     args = parser.parse_args()
